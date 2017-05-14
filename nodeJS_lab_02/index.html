@@ -1,0 +1,181 @@
+<html>
+
+<head>
+    <script src = "http://code.jquery.com/jquery-1.8.3.js"></script>
+    <title>nodeJS_lab_02</title>
+</head>
+
+<style type = "text/css">
+    table {
+        background-color: grey;
+        border : 2px solid black;
+        font-size: 25pt;
+    }
+    td {
+        border : 2px solid  black;
+    }
+</style>
+
+<h1>nodeJS_lab_02</h1>
+
+<button id="sort" onclick="sortStat()">Sort</button> <br>
+<input id="lim">
+<button onclick="limit()">limit</button>
+
+<table id = "tb"></table>
+
+<input id="inp1">
+<input id="inp2">
+<input id="inp3">
+
+<button id="add" onclick="addStat()">Add</button>
+
+<br>
+<input id="inp4">
+<button id="search" onclick="searchStat()">Search</button>
+<br>
+<button id="log" onclick="getLog()">log</button>
+<button id="sub" onclick="subPage()">subPage</button>
+
+<script type="text/javascript">
+
+    function addStat() {
+        $.ajax({
+            url: "/add",
+            data: {"id" : document.getElementById("inp1").value, "header" : document.getElementById("inp2").value, "comment" : document.getElementById("inp3").value },
+            type: "post",
+            success: function(result) {
+                if (result == "error 0") alert("Error: this id exists!");
+                else if (result == "error 1") alert("Error: available only input numbers!");
+                else if (result == "error 2") alert("Error: empty value of header!");
+                else if (result == "error 3") alert("Error: empty value of comment!");
+                else refresh(result);
+            }
+        });
+    }
+
+    function updatePage() {
+        $("tr").on("click", function() {
+            var number = $("td:first-child",this).text();
+            $.ajax({
+                url: "/uppage",
+                data: {"number": number},
+                type: "get",
+                success: function (result) {
+                    var newWin = window.open('http://127.0.0.1:7700/uppage?number=' + number, result);
+                }
+            });
+        });
+    }
+
+    function deleteStat() {
+        $("tr").on("click", function() {
+            var number = $("td:first-child",this).text();
+
+            $.ajax({
+                url: "/delete",
+                data: {"number": number},
+                type: "get",
+                success: function (result) {
+                    refresh(result);
+                }
+            });
+        });
+    }
+
+    function sortStat() {
+        $.ajax({
+            type: 'post',
+            url: '/sort',
+            success: function (data) {
+                refresh(data);
+            }
+        });
+    }
+
+    function searchStat() {
+        $.ajax({
+            url: "/search",
+            data: {"header": document.getElementById("inp4").value},
+            type: "get",
+            success: function (data) {
+                if (data == "empty") alert("This header is not found");
+                else refresh(data);
+            }
+        });
+    }
+    
+    function limit() {
+        $.ajax({
+            url: "/limit",
+            type: "get",
+            data: {"number" : document.getElementById("lim").value},
+            success: function (result) {
+                if (result == "Error") alert("Error: available only input numbers!");
+                else refresh(result);
+            }
+        })
+    }
+
+    function getLog() {
+        $.ajax({
+            type: 'post',
+            url: '/log',
+            success: function (data) {
+                var newWin = window.open('http://127.0.0.1:7700/log', data);
+            }
+        });
+    }
+
+	function info () {
+		$.ajax({
+			url: "/info",
+			type: "get",
+			success: function(result) {
+				refresh(result);
+			}
+		});
+	}
+
+    function refresh(data) {
+        $("#tb tr").remove();
+        data = JSON.parse(data);
+        for (var i = 0; i < data.length; i++) {
+            $("#tb").append("<tr>" +
+                    "<td>" + data[i].id + "</td>" +
+                    "<td>" + data[i].header + "</td>" +
+                    "<td>" + data[i].comment + "</td>" +
+                    "<td>  <button onclick='deleteStat()'>delete</button> </td>" +
+                    "<td>  <button onclick='updatePage()'>update</button> </td> " +
+                    "<td> <button onclick='chapterInfo()'>chapter</button> </td> " +
+                    "</tr>")
+        }
+        document.getElementById("inp1").value = parseInt(data[data.length-1].id) + 1;
+        document.getElementById("inp2").value = "";
+        document.getElementById("inp3").value = "";
+    }
+
+	function chapterInfo() {
+        $('tr').on('click', function(){
+            number=$('td:first-child', this).text();
+            $.ajax({
+                type: 'get',
+                url: '/chapter',
+                data: {'number': number},
+                success: function (data) {
+                    var newWin = window.open("http://127.0.0.1:7700/chapter?number="+number,data);
+                }
+            });
+        });
+    }
+
+    function subPage() {
+        var newWin = window.open("http://127.0.0.1:7700/sub");
+    }
+	
+	info();
+	
+</script>
+
+</body>
+</html>

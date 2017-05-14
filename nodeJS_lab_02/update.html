@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src = "http://code.jquery.com/jquery-1.8.3.js"></script>
+    <meta charset="UTF-8">
+    <title>update</title>
+</head>
+
+<body>
+
+<style type = "text/css">
+    table {
+        background-color: grey;
+        border : 2px solid black;
+        font-size: 25pt;
+    }
+    td {
+        border : 2px solid black;
+    }
+</style>
+
+<input id="up1" readonly>
+<input id="up2">
+<input id="up3">
+
+<button onclick="updateStat()">Update</button>
+
+<script>
+    function updateStat() {
+        $.ajax({
+            url: "/update",
+            data: {"id" : document.getElementById("up1").value,
+                "header" : document.getElementById("up2").value,
+                "comment" : document.getElementById("up3").value
+            },
+            type: "post",
+            success: function (result) {
+                alert('Данные изменены');
+                window.close();
+            }
+        });
+    }
+
+    function start() {
+        $.ajax({
+            url: "/upinfo",
+            type: "get",
+            success: function (result) {
+                result = JSON.parse(result)
+                document.getElementById("up1").value = result[result.length-1].id;
+                document.getElementById("up2").value = result[result.length-1].header;
+                document.getElementById("up3").value = result[result.length-1].comment;
+            }
+        })
+    }
+
+    start();
+
+</script>
+
+</body>
+</html>

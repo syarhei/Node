@@ -1,0 +1,34 @@
+{
+  "db": {
+    "dialect":"mysql",
+    "host": "127.0.0.1",
+    "name": "library",
+    "user": "root",
+    "password": "admin"
+  },
+  "log": {
+    "logSize": "100",
+    "root":"logs/",
+    "format":".json",
+    "defaultName":"1"
+  },
+  "env": "dev",
+  "cacheTime": 30,
+  "cookie": {
+    "key": "secret key",
+    "auth": "__auth_id",
+    "roleName":"role"
+  },
+  "defaults": {
+    "readChunk": {
+      "limit": 10,
+      "page": 1,
+      "order": "asc",
+      "orderField": "id"
+    },
+    "search": {
+      "searchKey": ""
+    }
+  }
+
+}

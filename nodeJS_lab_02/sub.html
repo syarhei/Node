@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SubPage</title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+</head>
+<body>
+
+<style type = "text/css">
+    input {
+        margin: 2px;
+        width: 150px;
+        height: 30px;
+    }
+    select {
+        margin: 2px;
+    }
+    div {
+        margin-left: 2px;
+    }
+</style>
+
+<input type="button" onclick="subscribeAdd()" value="subscribe to add">
+<input type="button" onclick="subscribeDelete()" value="subscribe to delete">
+<input type="button" onclick="subscribeUpdate()" value="subscribe to update">
+</br>
+
+<input type="button" onclick="subscribeOneAdd()" value="subscribe one add">
+<input type="button" onclick="subscribeOneDelete()" value="subscribe one delete">
+<input type="button" onclick="subscribeOneUpdate()" value="subscribe one update">
+</br>
+
+<input type="button" onclick="unsubscribeAdd()" value="unsubscribe to add">
+<input type="button" onclick="unsubscribeDelete()" value="unsubscribe to delete">
+<input type="button" onclick="unsubscribeUpdate()" value="unsubscribe to update">
+</br>
+
+<select id="tb1">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
+</select>
+</br>
+
+<input type="button" onclick="subscribePackageAdd()" value="pack_add">
+<input type="button" onclick="subscribePackageDelete()" value="pack_del">
+<input type="button" onclick="subscribePackageUpdate()" value="pack_upd">
+
+<div id="subscribe"></div>
+
+<script type="text/javascript">
+    var socket = new WebSocket("ws://127.0.0.1:8082");
+
+    function subscribeAdd(){
+        socket.send("add");
+    }
+
+    function subscribeDelete(){
+        socket.send("del");
+    }
+
+    function subscribeUpdate(){
+        socket.send("upd");
+    }
+
+    function unsubscribeAdd(){
+        socket.send("unsub_add");
+    }
+
+    function unsubscribeDelete(){
+        socket.send("unsub_del");
+    }
+
+    function unsubscribeUpdate(){
+        socket.send("unsub_upd");
+    }
+
+    function subscribeOneAdd(){
+        socket.send("add_one");
+    }
+
+    function subscribeOneDelete(){
+        socket.send("del_one");
+    }
+
+    function subscribeOneUpdate(){
+        socket.send("upd_one");
+    }
+
+    function subscribePackageAdd(){
+        var digit = document.getElementById("tb1").value;
+        socket.send("pack_add" + digit);
+    }
+
+    function subscribePackageDelete(){
+        var digit = document.getElementById("tb1").value;
+        socket.send("pack_del" + digit);
+    }
+
+    function subscribePackageUpdate(){
+        var digit = document.getElementById("tb1").value;
+        socket.send("pack_upd" + digit);
+    }
+
+    socket.onmessage = function(event) {
+        var incomingMessage = event.data;
+        showMessage(incomingMessage);
+    };
+
+    function showMessage(message) {
+        var messageElem = document.createElement('div');
+        messageElem.appendChild(document.createTextNode(message));
+        document.getElementById('subscribe').appendChild(messageElem);
+    }
+</script>
+</body>
+</html>
