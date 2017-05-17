@@ -1,0 +1,14 @@
+{
+  "db": {
+    "dialect":"mysql",
+    "host": "127.0.0.1",
+    "name": "passport",
+    "user": "root",
+    "password": "root"
+  },
+  "twitter": {
+    "key": "nUEHgBOIdaHY0eASiZ1z7n1Au",
+    "secret": "9EfdpEPMsw6HFrOlBXhETr4vOFkl4eeLIQQ350Q31vnh2ogckL",
+    "callback": "http://localhost:3300/auth/twitter/callback"
+  }
+}

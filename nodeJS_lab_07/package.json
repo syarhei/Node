@@ -1,0 +1,27 @@
+{
+  "name": "nodejslab07",
+  "version": "1.0.0",
+  "description": "passpost js",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Sergei Murkou",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syarhei/nodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/syarhei/nodeJS/issues"
+  },
+  "homepage": "https://github.com/syarhei/nodeJS#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "express-session": "^1.15.2",
+    "mysql": "^2.13.0",
+    "passport": "^0.3.2",
+    "passport-twitter": "^1.0.4",
+    "sequelize": "^3.30.4"
+  }
+}
