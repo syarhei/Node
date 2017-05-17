@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{npm}" />
-    <includedPredefinedLibrary name="ECMAScript 6" />
-    <excludedPredefinedLibrary name="nodeJS_lab_10/node_modules" />
-  </component>
-</project>
