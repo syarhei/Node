@@ -1,0 +1,23 @@
+{
+  "name": "lab_11",
+  "version": "1.0.0",
+  "description": "this file is test",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "Sergei Murkou",
+  "license": "ISC",
+  "dependencies": {
+    "@syarhei/gh-test-msu": "^1.5.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syarhei/nodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/syarhei/nodeJS/issues"
+  },
+  "homepage": "https://github.com/syarhei/nodeJS#readme"
+}
