@@ -1,0 +1,13 @@
+{
+  "jwt": {
+    "secretKey": "my_secret",
+    "expires": 800000
+  },
+  "db": {
+    "dialect":"mysql",
+    "host": "127.0.0.1",
+    "name": "dns",
+    "user": "root",
+    "password": "root"
+  }
+}
