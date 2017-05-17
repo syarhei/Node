@@ -1,0 +1,23 @@
+{
+  "name": "@syarhei/gh-test-msu",
+  "version": "1.4.0",
+  "description": "API for a work with repositories and commits in GitHub",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.16.1"
+  },
+  "main": "index.js",
+  "devDependencies": {},
+  "author": "Sergei Murkou",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syarhei/nodeJS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/syarhei/nodeJS/issues"
+  },
+  "homepage": "https://github.com/syarhei/nodeJS#readme"
+}
