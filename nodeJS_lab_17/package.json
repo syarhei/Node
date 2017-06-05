@@ -1,0 +1,25 @@
+{
+  "name": "lab_17",
+  "version": "1.0.0",
+  "description": "React",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syarhei/nodeJS.git"
+  },
+  "author": "Sergei Murkou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/syarhei/nodeJS/issues"
+  },
+  "homepage": "https://github.com/syarhei/nodeJS#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4",
+    "webpack": "^2.6.1"
+  }
+}
