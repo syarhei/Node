@@ -4,10 +4,13 @@
 
 const sequelize = require('sequelize');
 const express = require('express');
+const bodyParser = require('body-parser');
 const config = require('./config.json');
 
 let app = express();
 
+app.use(bodyParser.urlencoded({extended: false}));
+app.use('/webpack', express.static('webpack'));
 app.use(express.static('view'));
 
 const db_connect = require('./database/connect') (sequelize);

@@ -6,7 +6,14 @@ module.exports = (item) => {
     function Item(item) {
         this.getItems = getItems;
         this.addItem = addItem;
+        this.updateItem = updateItem;
         this.deleteItem = deleteItem;
+
+        function getItemById(id) {
+            return new Promise((resolve, reject) => {
+                item.findById(id).then(resolve).catch(reject);
+            })
+        }
 
         function getItems(options) {
             let params = {};
@@ -23,11 +30,21 @@ module.exports = (item) => {
             })
         }
 
+        function updateItem(options) {
+            return new Promise((resolve, reject) => {
+                return getItemById(options.id).then((model) => {
+                    let obj = { name: model.name };
+                    if (model.isDone)
+                        obj.push({ isDOne: false });
+                    else obj.push({ isDone: true });
+                    return item.update(obj).then(resolve);
+                }).catch(reject)
+            })
+        }
+
         function deleteItem(options) {
             return new Promise((resolve, reject) => {
-                item.destroy({ where: {
-                    id: options.id
-                }}).then(resolve).catch(reject);
+                item.destroy({ where: options}).then(resolve).catch(reject);
             })
         }
     }
