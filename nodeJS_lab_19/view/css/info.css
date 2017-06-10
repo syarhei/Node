@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+}
+
+.Header {
+    background-color: cadetblue;
+    width: 100%;
+    height: 80px;
+    /* height: 80px; */
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px 0 20px;
+    display: inline-block;
+}
+
+.Now {
+    background-color: antiquewhite;
+    width: 100%;
+    height: 400px;
+    /* height: 80px; */
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px 0 20px;
+    display: inline-block;
+}
+
+.Future {
+    background-color: aquamarine;
+    width: 100%;
+    height: 300px;
+    /* height: 80px; */
+    text-align: center;
+    vertical-align: middle;
+    padding: 15px 0 20px;
+    display: inline-block;
+}
+
+table {
+    border-collapse: collapse;
+    background-color: #e9e6db;
+    color: #444444;
+    margin-top: 20px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+table, td, th {
+    border: 2px solid #444444;
+}
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+table input{
+    width: 190px;
+}
