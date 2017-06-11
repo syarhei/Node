@@ -2,17 +2,22 @@
  * Created by Sergei on 06.06.2017.
  */
 
+import 'babel-polyfill';
 import React from 'react';
 import ReactDom from 'react-dom';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
-import { createStore } from 'redux';
-import { connect } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
 import { cities } from '../cities/cities';
+import createSagaMiddleware from 'redux-saga'
+import rootSaga from '../saga/middleware';
 
 const Now = require('./Now');
 const Future = require('./Future');
 const Header = require('./Header');
 const Cities = require('./Cities');
+
+const city1 = {type: 'CITY_ADD_SAGA', id: 2950159, name: 'Berlin'};
+const city2 = {type: 'CITY_ADD_SAGA', id: 2643743, name: 'London'};
 
 let userReducer = function(state = [], action) {
     if (state === undefined) {
@@ -28,15 +33,24 @@ let userReducer = function(state = [], action) {
     return state;
 };
 
-let store = createStore(userReducer, cities);
+const sagaMiddleware = createSagaMiddleware();
+
+let store = createStore(userReducer, cities, applyMiddleware(sagaMiddleware));
+sagaMiddleware.run(rootSaga);
+
+const action = type => store.dispatch({type});
 
 const WF = React.createClass({
     render: function () {
-        console.log(store.getState());
-        store.dispatch({ id: 2950159, name: 'Berlin', type: 'CITY_ADD'});
-        console.log(store.getState());
+
         return (
             <div className="WF">
+                <button onClick={() => { store.dispatch(city1); }} >
+                    berlin
+                </button>
+                <button onClick={() => { store.dispatch(city2); }} >
+                    city
+                </button>
                 <Now cities={store.getState()}/>
                 <Future/>
             </div>
@@ -59,4 +73,11 @@ let App = () => {
     );
 };
 
-ReactDom.render(<App/>, document.getElementById('app'));
+function render() {
+    ReactDom.render(<App/>, document.getElementById('app'));
+}
+
+render();
+store.subscribe(render);
+
+export default store;
