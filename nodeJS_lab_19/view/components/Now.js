@@ -20,6 +20,9 @@ module.exports = React.createClass({
         });
         return (
             <div className="Now">
+                <div className="LabelInfo">
+                    <label>CURRENT WEATHER</label>
+                </div>
                 {object}
                 <Info/>
             </div>
@@ -27,10 +30,14 @@ module.exports = React.createClass({
     },
     onButtonClick: (options) => {
         api.getCurrentWeather(options.id).then((array) => {
-            document.getElementById('currentMin').innerHTML = array.data.main.temp_min;
-            document.getElementById('currentMax').innerHTML = array.data.main.temp_max;
-            document.getElementById('currentTemp').innerHTML = array.data.main.temp;
-            document.getElementById('currentCloud').innerHTML = array.data.weather[0].description;
+            document.getElementById('th1').innerHTML = 'min';
+            document.getElementById('th2').innerHTML = 'max';
+            document.getElementById('th3').innerHTML = 'current';
+            document.getElementById('th4').innerHTML = 'description';
+            document.getElementById('td1').innerHTML = array.data.main.temp_min;
+            document.getElementById('td2').innerHTML = array.data.main.temp_max;
+            document.getElementById('td3').innerHTML = array.data.main.temp;
+            document.getElementById('td4').innerHTML = array.data.weather[0].description;
         }).catch(console.log);
     }
 });

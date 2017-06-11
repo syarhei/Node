@@ -46,7 +46,7 @@ module.exports = (service) => {
     item.delete('/completed', (req, res) => {
         list = list.filter(x => !x.completed);
         res.json(list);
-    })
+    });
 
     item.delete('/:id', (req, res) => {
         let index = list.findIndex(x => x.id === +req.params.id);

@@ -1,11 +1,27 @@
 body {
+    font-family: "Segoe UI";
     margin: 0;
+    font-size: 14px;
 }
 
+a {
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white;
+    text-decoration: none;
+
+}
+A:link, A:visited, A:active {
+    text-decoration: none;
+}
+A:hover, A:focus {
+    text-decoration: none; /* Делает ссылку подчеркнутой при наведении на нее курсора */
+    color: #e9e6db; /* Цвет ссылки */
+}
 .Header {
     background-color: cadetblue;
     width: 100%;
-    height: 80px;
+    height: 20px;
     /* height: 80px; */
     text-align: center;
     vertical-align: middle;
@@ -16,7 +32,7 @@ body {
 .Now {
     background-color: antiquewhite;
     width: 100%;
-    height: 400px;
+    /*height: 400px;*/
     /* height: 80px; */
     text-align: center;
     vertical-align: middle;
@@ -27,12 +43,38 @@ body {
 .Future {
     background-color: aquamarine;
     width: 100%;
-    height: 300px;
+    /*height: 300px;*/
     /* height: 80px; */
     text-align: center;
     vertical-align: middle;
     padding: 15px 0 20px;
     display: inline-block;
+}
+
+.LabelInfo {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: blue;
+}
+
+.ButtonCity {
+    background-color: burlywood;
+}
+
+button {
+    border: 1px solid #444444;
+    height: 20px;
+    width: 80px;
+    color: #444444;
+    background-color: #c8c3bb;
+    text-align: center;
+    border-radius: 5px;
+    margin: 3px;
+}
+
+button:focus, button:hover {
+    background-color: #e9e6db;
 }
 
 table {

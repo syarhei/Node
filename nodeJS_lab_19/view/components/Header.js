@@ -8,8 +8,9 @@ module.exports = React.createClass({
     render: function () {
         return (
             <div className="Header">
-                <a href="/#/now"> NOW </a>
-                <a href="/#/future"> FUTURE </a>
+                <a href="/#">MAIN</a>
+                <a href="/#/now">NOW</a>
+                <a href="/#/future">FUTURE</a>
             </div>
         );
     }
